@@ -1,4 +1,4 @@
-# Poudlard - La Magie en Python
+# Poudlard
 
 ## Auteurs
 
@@ -6,7 +6,7 @@
 - El-Abassi Sara
 - Rhilane Basma
 
-**Groupe : G1**
+**Groupe : G2**
 
 ## Structure du projet
 
