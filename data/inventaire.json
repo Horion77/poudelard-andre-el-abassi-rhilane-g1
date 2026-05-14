@@ -1,1 +1,10 @@
-[]
+{
+    "1": ["Baguette magique", 35],
+    "2": ["Robe de sorcier", 20],
+    "3": ["Chaudron en étain", 15],
+    "4": ["Manuel de potions", 25],
+    "5": ["Plume magique", 5],
+    "6": ["Livre enchanté", 30],
+    "7": ["Balance de cuivre", 10],
+    "8": ["Cape d'invisibilité", 100]
+}

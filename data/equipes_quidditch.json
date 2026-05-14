@@ -1,1 +1,50 @@
-{}
+{
+  "Gryffondor": {
+    "capitaine": "Harry Potter",
+    "joueurs": [
+      "Harry Potter (Attrapeur)",
+      "Ginny Weasley (Chasseuse)",
+      "Katie Bell (Chasseuse)",
+      "Demelza Robins (Chasseuse)",
+      "Ron Weasley (Gardien)",
+      "Jimmy Peakes (Batteur)",
+      "Ritchie Coote (Batteur)"
+    ]
+  },
+  "Serpentard": {
+    "capitaine": "Drago Malefoy",
+    "joueurs": [
+      "Drago Malefoy (Attrapeur)",
+      "Cassius Warrington (Chasseur)",
+      "Graham Montague (Chasseur)",
+      "Urquhart (Chasseur)",
+      "Miles Bletchley (Gardien)",
+      "Vincent Crabbe (Batteur)",
+      "Gregory Goyle (Batteur)"
+    ]
+  },
+  "Serdaigle": {
+    "capitaine": "Cho Chang",
+    "joueurs": [
+      "Cho Chang (Attrapeuse)",
+      "Roger Davies (Chasseur)",
+      "Michael Corner (Chasseur)",
+      "Jeremy Stretton (Chasseur)",
+      "Grant Page (Gardien)",
+      "Jason Samuels (Batteur)",
+      "Randall Phelps (Batteur)"
+    ]
+  },
+  "Poufsouffle": {
+    "capitaine": "Cedric Diggory",
+    "joueurs": [
+      "Cedric Diggory (Attrapeur)",
+      "Heidi Macavoy (Chasseuse)",
+      "Zacharias Smith (Chasseur)",
+      "Jason Samuels (Chasseur)",
+      "Herbert Fleet (Gardien)",
+      "Anthony Rickett (Batteur)",
+      "Maxine O'Flaherty (Batteuse)"
+    ]
+  }
+}

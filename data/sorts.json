@@ -1,1 +1,122 @@
-[]
+[
+    {
+        "nom": "Lumos",
+        "description": "Fait briller de la lumière à l'extrémité de la baguette.",
+        "type": "Utilitaire"
+    },
+    {
+        "nom": "Nox",
+        "description": "Éteint la lumière produite par Lumos.",
+        "type": "Utilitaire"
+    },
+    {
+        "nom": "Alohomora",
+        "description": "Déverrouille les portes et les objets fermés.",
+        "type": "Utilitaire"
+    },
+    {
+        "nom": "Wingardium Leviosa",
+        "description": "Fait léviter des objets.",
+        "type": "Utilitaire"
+    },
+    {
+        "nom": "Lumos Solem",
+        "description": "Produit une lumière très puissante simulant celle du soleil.",
+        "type": "Utilitaire"
+    },
+    {
+        "nom": "Aparecium",
+        "description": "Rend visible l'encre invisible.",
+        "type": "Utilitaire"
+    },
+    {
+        "nom": "Obliviate",
+        "description": "Efface des souvenirs spécifiques de la mémoire d'une personne.",
+        "type": "Utilitaire"
+    },
+    {
+        "nom": "Accio",
+        "description": "Fait apparaître des objets vers le lanceur.",
+        "type": "Utilitaire"
+    },
+    {
+        "nom": "Reparo",
+        "description": "Répare les objets cassés.",
+        "type": "Utilitaire"
+    },
+    {
+        "nom": "Expelliarmus",
+        "description": "Désarme un adversaire.",
+        "type": "Défensif"
+    },
+    {
+        "nom": "Protego",
+        "description": "Crée un bouclier magique pour bloquer les attaques.",
+        "type": "Défensif"
+    },
+    {
+        "nom": "Finite Incantatem",
+        "description": "Met fin aux sorts ou effets en cours.",
+        "type": "Défensif"
+    },
+    {
+        "nom": "Petrificus Totalus",
+        "description": "Pétrifie complètement la cible.",
+        "type": "Offensif"
+    },
+    {
+        "nom": "Stupefy",
+        "description": "Assomme temporairement un adversaire.",
+        "type": "Offensif"
+    },
+    {
+        "nom": "Rictusempra",
+        "description": "Fait rire de manière incontrôlable et affaiblit la cible.",
+        "type": "Offensif"
+    },
+    {
+        "nom": "Incendio",
+        "description": "Crée une flamme.",
+        "type": "Offensif"
+    },
+    {
+        "nom": "Crucio",
+        "description": "Inflige une douleur insupportable à la cible.",
+        "type": "Offensif"
+    },
+    {
+        "nom": "Imperio",
+        "description": "Contrôle les actions de la cible.",
+        "type": "Offensif"
+    },
+    {
+        "nom": "Avada Kedavra",
+        "description": "Provoque la mort instantanée de la cible.",
+        "type": "Offensif"
+    },
+    {
+        "nom": "Expecto Patronum",
+        "description": "Convoque un Patronus pour repousser les Détraqueurs.",
+        "type": "Défensif"
+    },
+    {
+        "nom": "Diffindo",
+        "description": "Coupe des objets avec précision.",
+        "type": "Offensif"
+    },
+    {
+        "nom": "Confringo",
+        "description": "Provoque une explosion à l'impact.",
+        "type": "Offensif"
+    },
+    {
+        "nom": "Rennervate",
+        "description": "Réanime une personne assommée ou inconsciente.",
+        "type": "Défensif"
+    },
+    {
+        "nom": "Incarcerous",
+        "description": "Convoque des cordes pour ligoter la cible.",
+        "type": "Offensif"
+    }
+]
