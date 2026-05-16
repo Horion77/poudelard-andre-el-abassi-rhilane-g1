@@ -96,3 +96,11 @@ def installation_salle_commune(joueur):
     print("\n" + info["message_installation"])
     print("Les couleurs de votre maison : " + ", ".join(info["couleurs"]))
 
+
+def lancer_chapitre_2(personnage):
+    rencontrer_amis(personnage)
+    mot_de_bienvenue()
+    ceremonie_repartition(personnage)
+    installation_salle_commune(personnage)
+    afficher_personnage(personnage)
+    print("\nFin du Chapitre 2 ! Les cours commencent à Poudlard...")
