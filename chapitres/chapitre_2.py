@@ -56,3 +56,22 @@ def mot_de_bienvenue():
     print("Souvenez-vous : ce n'est pas nos capacités qui montrent ce que nous sommes vraiment,")
     print("c'est nos choix. Bonne année à tous ! »")
     input("\nAppuyez sur Entrée pour continuer...")
+
+def ceremonie_repartition(joueur):
+    questions = [
+        (
+            "Tu vois un ami en danger. Que fais-tu ?",
+            ["Je fonce l'aider", "Je réfléchis à un plan", "Je cherche de l'aide", "Je reste calme et j'observe"],
+            ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
+        ),
+        (
+            "Quel trait te décrit le mieux ?",
+            ["Courageux et loyal", "Rusé et ambitieux", "Patient et travailleur", "Intelligent et curieux"],
+            ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
+        ),
+        (
+            "Face à un défi difficile, tu...",
+            ["Fonces sans hésiter", "Cherches la meilleure stratégie", "Comptes sur tes amis", "Analyses le problème"],
+            ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
+        )
+    ]
