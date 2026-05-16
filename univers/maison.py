@@ -24,3 +24,10 @@ def afficher_maison_gagnante(maisons):
     else:
         print("Egalite entre : " + ", ".join(gagnantes) + " avec " + str(score_max) + " points !")
 
+def repartition_maison(joueur, questions):
+    scores = {
+        "Gryffondor": 0,
+        "Serpentard": 0,
+        "Poufsouffle": 0,
+        "Serdaigle": 0
+    }
