@@ -9,13 +9,6 @@ def afficher_menu_principal():
 
 
 def lancer_choix_menu():
-    maisons = {
-        "Gryffondor": 0,
-        "Serpentard": 0,
-        "Poufsouffle": 0,
-        "Serdaigle": 0
-    }
-
     continuer = True
     while continuer:
         afficher_menu_principal()
@@ -23,7 +16,7 @@ def lancer_choix_menu():
 
         if choix == "1":
             joueur = lancer_chapitre_1()
-            lancer_chapitre_2(joueur)
+            joueur = lancer_chapitre_2(joueur)
             continuer = False
         elif choix == "2":
             print("À bientôt dans le monde des sorciers !")
