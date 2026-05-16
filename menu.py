@@ -9,6 +9,13 @@ def afficher_menu_principal():
 
 
 def lancer_choix_menu():
+    maisons = {
+        "Gryffondor": 0,
+        "Serpentard": 0,
+        "Poufsouffle": 0,
+        "Serdaigle": 0
+    }
+
     continuer = True
     while continuer:
         afficher_menu_principal()
