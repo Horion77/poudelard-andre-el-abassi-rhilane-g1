@@ -87,7 +87,7 @@ def ceremonie_repartition(joueur):
 
 
 def installation_salle_commune(joueur):
-    maisons_data = load_fichier("data/inventaire.json")
+    maisons_data = load_fichier("data/maisons.json")
     maison = joueur["Maison"]
     
     if maison in maisons_data:
