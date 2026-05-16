@@ -1,9 +1,10 @@
 from chapitres.chapitre_1 import lancer_chapitre_1
+from chapitres.chapitre_2 import lancer_chapitre_2
 
 
 def afficher_menu_principal():
     print("\n=== Poudlard : L'Art de Coder comme un Sorcier ===")
-    print("1. Lancer le Chapitre 1 - L'arrivée dans le monde magique.")
+    print("1. Lancer l'aventure (Chapitres 1 et 2).")
     print("2. Quitter le jeu.")
 
 
@@ -14,7 +15,8 @@ def lancer_choix_menu():
         choix = input("Votre choix : ").strip()
 
         if choix == "1":
-            lancer_chapitre_1()
+            joueur = lancer_chapitre_1()
+            lancer_chapitre_2(joueur)
             continuer = False
         elif choix == "2":
             print("À bientôt dans le monde des sorciers !")
