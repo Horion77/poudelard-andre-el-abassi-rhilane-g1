@@ -9,7 +9,8 @@ def actualiser_points_maison(maisons, nom_maison, points):
     else:
         print("Maison introuvable : " + nom_maison)
 def afficher_maison_gagnante(maisons):
-    score_max = 0
+    #score_max initialisé à -1 au lieu de 0 pour éviter que toutes les maisons à 0 soient déclarées ex æquo dès le début
+    score_max = -1
     for maison in maisons:
         if maisons[maison] > score_max:
             score_max = maisons[maison]
@@ -22,7 +23,7 @@ def afficher_maison_gagnante(maisons):
     if len(gagnantes) == 1:
         print("La maison gagnante est " + gagnantes[0] + " avec " + str(score_max) + " points !")
     else:
-        print("Egalite entre : " + ", ".join(gagnantes) + " avec " + str(score_max) + " points !")
+        print("Egalité entre : " + ", ".join(gagnantes) + " avec " + str(score_max) + " points !")
 
 def repartition_maison(joueur, questions):
     scores = {
