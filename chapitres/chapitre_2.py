@@ -75,6 +75,7 @@ def ceremonie_repartition(joueur):
             ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
         )
     ]
+
     print("\nLa cérémonie de répartition commence dans la Grande Salle...")
     print("Le Choixpeau magique t'observe longuement avant de poser ses questions :")
 
@@ -83,3 +84,15 @@ def ceremonie_repartition(joueur):
 
     print("\nLe Choixpeau s'exclame : " + maison + " !!!")
     print("Tu rejoins les élèves de " + maison + " sous les acclamations !")
+
+
+def installation_salle_commune(joueur):
+    maisons_data = load_fichier("data/maisons.json")
+    maison = joueur["Maison"]
+    info = maisons_data[maison]
+
+    print("\nVous suivez les préfets à travers les couloirs du château...")
+    print("\n" + info["description"])
+    print("\n" + info["message_installation"])
+    print("Les couleurs de votre maison : " + ", ".join(info["couleurs"]))
+
