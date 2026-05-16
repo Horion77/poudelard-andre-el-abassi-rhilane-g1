@@ -87,14 +87,17 @@ def ceremonie_repartition(joueur):
 
 
 def installation_salle_commune(joueur):
-    maisons_data = load_fichier("data/maisons.json")
+    maisons_data = load_fichier("../data/maisons.json")
     maison = joueur["Maison"]
-    info = maisons_data[maison]
-
-    print("\nVous suivez les préfets à travers les couloirs du château...")
-    print("\n" + info["description"])
-    print("\n" + info["message_installation"])
-    print("Les couleurs de votre maison : " + ", ".join(info["couleurs"]))
+    
+    if maison in maisons_data:
+        info = maisons_data[maison]
+        print("\nVous suivez les préfets à travers les couloirs du château...")
+        print("\n" + info["description"])
+        print("\n" + info["message_installation"])
+        print("Les couleurs de votre maison : " + ", ".join(info["couleurs"]))
+    else:
+        print("Erreur : maison '" + maison + "' introuvable dans le fichier.")
 
 
 def lancer_chapitre_2(personnage):
