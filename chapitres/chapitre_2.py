@@ -47,3 +47,12 @@ def rencontrer_amis(joueur):
     print("\nLe train continue sa route. Le château de Poudlard se profile à l'horizon...")
     print("Tes choix semblent déjà en dire long sur ta personnalité !")
     print("\nTes attributs mis à jour : " + str(joueur["Attributs"]))
+
+def mot_de_bienvenue():
+    print("\n=== Arrivée à Poudlard ===")
+    print("Le professeur Dumbledore s'avance vers le pupitre et prend la parole :")
+    print("« Bienvenue à tous à Poudlard !")
+    print("Que cette année vous apporte sagesse, courage et magie.")
+    print("Souvenez-vous : ce n'est pas nos capacités qui montrent ce que nous sommes vraiment,")
+    print("c'est nos choix. Bonne année à tous ! »")
+    input("\nAppuyez sur Entrée pour continuer...")
