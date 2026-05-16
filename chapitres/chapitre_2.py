@@ -75,3 +75,11 @@ def ceremonie_repartition(joueur):
             ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
         )
     ]
+    print("\nLa cérémonie de répartition commence dans la Grande Salle...")
+    print("Le Choixpeau magique t'observe longuement avant de poser ses questions :")
+
+    maison = repartition_maison(joueur, questions)
+    joueur["Maison"] = maison
+
+    print("\nLe Choixpeau s'exclame : " + maison + " !!!")
+    print("Tu rejoins les élèves de " + maison + " sous les acclamations !")
