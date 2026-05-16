@@ -54,3 +54,14 @@ def repartition_maison(joueur, questions):
         scores[maison_choisie] = scores[maison_choisie] + 3
 
     print("\nRésumé des scores :")
+    for maison in scores:
+        print(maison + " : " + str(scores[maison]) + " points")
+
+    maison_finale = ""
+    score_max = 0
+    for maison in scores:
+        if scores[maison] > score_max:
+            score_max = scores[maison]
+            maison_finale = maison
+
+    return maison_finale
