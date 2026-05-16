@@ -52,7 +52,7 @@ def mot_de_bienvenue():
     print("\n=== Arrivée à Poudlard ===")
     print("Le professeur Dumbledore s'avance vers le pupitre et prend la parole :")
     print("« Bienvenue à tous à Poudlard !")
-    print("Que cette année vous apporte sagesse, courage et magie.")
+    print("Que cette année vous apporte sagesse, courage et magie!")
     print("Souvenez-vous : ce n'est pas nos capacités qui montrent ce que nous sommes vraiment,")
     print("c'est nos choix. Bonne année à tous ! »")
     input("\nAppuyez sur Entrée pour continuer...")
