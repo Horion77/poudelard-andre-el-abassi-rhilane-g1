@@ -31,3 +31,26 @@ def repartition_maison(joueur, questions):
         "Poufsouffle": 0,
         "Serdaigle": 0
     }
+
+    attributs = joueur["Attributs"]
+    scores["Gryffondor"] = scores["Gryffondor"] + attributs["courage"] * 2
+    scores["Serpentard"] = scores["Serpentard"] + attributs["ambition"] * 2
+    scores["Poufsouffle"] = scores["Poufsouffle"] + attributs["loyauté"] * 2
+    scores["Serdaigle"] = scores["Serdaigle"] + attributs["intelligence"] * 2
+
+    for question in questions:
+        texte = question[0]
+        options = question[1]
+        maisons_associees = question[2]
+
+        choix = demander_choix(texte, options)
+
+        index = 0
+        for i in range(len(options)):
+            if options[i] == choix:
+                index = i
+
+        maison_choisie = maisons_associees[index]
+        scores[maison_choisie] = scores[maison_choisie] + 3
+
+    print("\nRésumé des scores :")
