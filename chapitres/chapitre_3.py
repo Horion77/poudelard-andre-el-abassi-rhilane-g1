@@ -26,7 +26,7 @@ def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
             utilitaires.append(sort)
             print("Tu viens d'apprendre le sortilège : " + sort["nom"] + " (" + sort["type"] + ")")
             input("Appuie sur Entrée pour continuer...")
-            
+
     sorts_appris = offensifs + defensifs + utilitaires
     for sort in sorts_appris:
         ajouter_objet(joueur, "Sortilèges", sort["nom"])
@@ -36,3 +36,14 @@ def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
     for sort in sorts_appris:
         print("- " + sort["nom"] + " (" + sort["type"] + ") : " + sort["description"])
 
+
+
+
+
+
+def lancer_chapitre_3(personnage, maisons):
+    apprendre_sorts(personnage)
+    score = quiz_magie(personnage)
+    actualiser_points_maison(maisons, personnage["Maison"], score)
+    afficher_maison_gagnante(maisons)
+    afficher_personnage(personnage)
