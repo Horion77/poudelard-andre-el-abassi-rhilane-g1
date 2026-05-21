@@ -15,3 +15,24 @@ def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
     while len(offensifs) < 1 or len(defensifs) < 1 or len(utilitaires) < 3:
         sort = random.choice(tous_les_sorts)
         if sort["type"] == "Offensif" and len(offensifs) < 1 and sort not in offensifs:
+            offensifs.append(sort)
+            print("Tu viens d'apprendre le sortilège : " + sort["nom"] + " (" + sort["type"] + ")")
+            input("Appuie sur Entrée pour continuer...")
+        elif sort["type"] == "Défensif" and len(defensifs) < 1 and sort not in defensifs:
+            defensifs.append(sort)
+            print("Tu viens d'apprendre le sortilège : " + sort["nom"] + " (" + sort["type"] + ")")
+            input("Appuie sur Entrée pour continuer...")
+        elif sort["type"] == "Utilitaire" and len(utilitaires) < 3 and sort not in utilitaires:
+            utilitaires.append(sort)
+            print("Tu viens d'apprendre le sortilège : " + sort["nom"] + " (" + sort["type"] + ")")
+            input("Appuie sur Entrée pour continuer...")
+            
+    sorts_appris = offensifs + defensifs + utilitaires
+    for sort in sorts_appris:
+        ajouter_objet(joueur, "Sortilèges", sort["nom"])
+
+    print("\nTu as terminé ton apprentissage de base à Poudlard !")
+    print("Voici les sortilèges que tu maîtrises désormais :")
+    for sort in sorts_appris:
+        print("- " + sort["nom"] + " (" + sort["type"] + ") : " + sort["description"])
+
