@@ -1,11 +1,12 @@
 from chapitres.chapitre_1 import lancer_chapitre_1
 from chapitres.chapitre_2 import lancer_chapitre_2
 from chapitres.chapitre_3 import lancer_chapitre_3
+from chapitres.chapitre_4 import lancer_chapitre4_quidditch
 
 
 def afficher_menu_principal():
     print("\n=== Poudlard : L'Art de Coder comme un Sorcier ===")
-    print("1. Lancer l'aventure (Chapitres 1 à 3).")
+    print("1. Lancer l'aventure (Chapitres 1 à 4).")
     print("2. Quitter le jeu.")
 
 
@@ -26,6 +27,7 @@ def lancer_choix_menu():
             }
             lancer_chapitre_3(joueur, maisons)
             print("\nFin du Chapitre 3 !")
+            lancer_chapitre4_quidditch(joueur, maisons)
             continuer = False
         elif choix == "2":
             print("À bientôt dans le monde des sorciers !")
