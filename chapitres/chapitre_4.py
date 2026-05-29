@@ -4,14 +4,8 @@ from utils.input_utils import demander_choix, load_fichier
 from univers.personnage import afficher_personnage
 from univers.maison import actualiser_points_maison, afficher_maison_gagnante
 
-# codes couleur ANSI (pas besoin d'import, c'est juste des strings)
-JAUNE = "\033[93m"
-CYAN = "\033[96m"
-VERT = "\033[92m"
-ROUGE = "\033[91m"
-VIOLET = "\033[95m"
-GRAS = "\033[1m"
-RESET = "\033[0m"
+# couleurs ANSI : centralisees dans utils/couleurs.py (juste des strings)
+from utils.couleurs import JAUNE, CYAN, VERT, ROUGE, VIOLET, GRAS, RESET
 
 
 # -------------------------------------------------------
@@ -93,6 +87,7 @@ def match_quidditch(joueur, maisons):
     afficher_equipe(maison_joueur, e1)
     afficher_equipe(maison_adverse, e2)
     print("\nTu joues pour " + maison_joueur + " en tant qu'Attrapeur.")
+    print(CYAN + "Dans les gradins, Hermione brandit une banderole et Ron hurle ton nom." + RESET)
     input("\nAppuyez sur Entree pour commencer...")
 
     for tour in range(1, 21):
@@ -245,13 +240,13 @@ def vision_gryffondor(joueur):
     c2 = demander_choix(
         "\nQue fais-tu ?",
         [
-            "Tu lances Stupefix sur le Mangemort d'abord, puis tu fonces",
+            "Tu lances Stupéfix sur le Mangemort d'abord, puis tu fonces",
             "Tu fonces vers ton ami, quitte a tourner le dos au Mangemort",
             "Tu cries pour attirer d'autres eleves en renfort"
         ]
     )
-    if c2 == "Tu lances Stupefix sur le Mangemort d'abord, puis tu fonces":
-        print("\nStupefix. Le Mangemort s'effondre.")
+    if c2 == "Tu lances Stupéfix sur le Mangemort d'abord, puis tu fonces":
+        print("\nStupéfix. Le Mangemort s'effondre.")
         print("Tu rejoins ton ami. Il est blesse mais conscient.")
         pts = pts + 2
     elif c2 == "Tu fonces vers ton ami, quitte a tourner le dos au Mangemort":
@@ -277,7 +272,7 @@ def vision_gryffondor(joueur):
     )
     if c3 == "Tu attends dans l'ombre et tu lances quand ils approchent":
         print("\nIls avancent. Tu laisses passer trois secondes.")
-        print("Bang. Bang. Stupefix double. Les deux a terre en meme temps.")
+        print("Bang. Bang. Stupéfix double. Les deux a terre en meme temps.")
         print("Le couloir retrouve le silence.")
         pts = pts + 2
     elif c3 == "Lumos Maxima -- tu illumines tout et tu charges droit sur eux":
