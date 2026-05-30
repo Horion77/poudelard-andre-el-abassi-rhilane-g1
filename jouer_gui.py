@@ -42,14 +42,14 @@ CODE_VERS_TAG = {
 TAG_VERS_COULEUR = {
     "rouge": "#ff6b6b", "vert": "#5af78e", "jaune": "#f3f99d",
     "bleu": "#57c7ff", "violet": "#ff6ac1", "cyan": "#9aedfe",
-    "gris": "#9aa0a6", "blanc": "#ffffff",
+    "gris": "#9aa0a6", "blanc": "#950d0d",
 }
 
 # Palette de l'interface.
 FOND = "#15131f"          # fond general (nuit)
 FOND_TEXTE = "#1b1830"    # fond de la zone d'histoire
 FOND_BAS = "#15131f"      # fond de la barre d'interaction
-TEXTE = "#e8e4f3"         # couleur du texte par defaut
+TEXTE = "#ffffff"            # couleur du texte par defaut
 OR = "#d4af37"            # accent dore facon Poudlard
 OR_CLAIR = "#f0d979"
 
@@ -215,15 +215,14 @@ def main():
         vider_bas()
         for index in range(len(options)):
             numero = index + 1
-            bouton = tk.Button(
+            bouton = tk.Label(
                 bas, text="  " + str(numero) + ".  " + options[index],
                 font=("Georgia", 12), anchor="w", justify="left",
-                bg="#272140", fg=TEXTE, activebackground=OR,
-                activeforeground=FOND, relief="flat", padx=14, pady=9,
+                bg="#272140", fg=TEXTE, padx=14, pady=9,
                 cursor="hand2", wraplength=820,
-                command=lambda n=numero: repondre(str(n)),
             )
             bouton.pack(fill="x", pady=3)
+            bouton.bind("<Button-1>", lambda e, n=numero: repondre(str(n)))
             survol(bouton, "#272140", "#3a3160")
             # Raccourci clavier : touche 1..9.
             if numero <= 9:
