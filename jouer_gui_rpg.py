@@ -48,10 +48,21 @@ class AppRPG:
         self.cadre_img = tk.Frame(root, bg=NOIR)
         self.cadre_img.pack(fill="both", expand=True, padx=0, pady=0)
 
+        # Image de fond (remplit tout le cadre, toujours visible)
+        self.label_fond = tk.Label(self.cadre_img, bg=NOIR)
+        self.label_fond.place(relx=0, rely=0, relwidth=1, relheight=1)
+
+        # Image de scene (par-dessus le fond, centree)
         self.label_img = tk.Label(self.cadre_img, bg=NOIR)
         self.label_img.place(relx=0.5, rely=0.5, anchor="center")
 
-        self._photo_actuelle = None  # garde la reference pour eviter le GC
+        self._photo_actuelle = None
+        self._photo_fond     = None
+        self._chemin_fond    = "data/art/fond.png"  # image de fond permanente
+
+        # Met a jour le fond quand la fenetre change de taille
+        self.cadre_img.bind("<Configure>", self._on_resize)
+
         self._charger_image_defaut()
 
         # ── Boite de texte style RPG (bas) ─────────────────────────────────
@@ -95,22 +106,38 @@ class AppRPG:
     # ── Image ───────────────────────────────────────────────────────────────
 
     def _charger_image_defaut(self):
-        # Fond noir avec titre au demarrage
         self.label_img.config(image="", text="✦  P O U D L A R D  ✦",
                               fg=OR, font=("Georgia", 28, "bold"))
+
+    def _on_resize(self, event):
+        # Recharge le fond a la nouvelle taille du cadre
+        self._afficher_fond(event.width, event.height)
+
+    def _afficher_fond(self, larg, haut):
+        if larg < 10 or haut < 10:
+            return
+        try:
+            img = Image.open(self._chemin_fond)
+            # Etirer pour couvrir tout le cadre (pas thumbnail = pas de bandes noires)
+            img = img.resize((larg, haut), Image.LANCZOS)
+            photo = ImageTk.PhotoImage(img)
+            self._photo_fond = photo
+            self.label_fond.config(image=photo)
+        except Exception:
+            pass  # pas de fond si le fichier est absent
 
     def afficher_image(self, nom):
         chemin = "data/art/" + nom + ".png"
         try:
             img = Image.open(chemin)
-            # Prend la taille reelle du cadre image pour s'adapter
             self.root.update_idletasks()
             larg = max(self.cadre_img.winfo_width(), 800)
             haut = max(self.cadre_img.winfo_height(), 400)
-            img.thumbnail((larg, haut), Image.LANCZOS)
+            # L'image de scene occupe 90% du cadre max pour laisser le fond visible
+            img.thumbnail((int(larg * 0.92), int(haut * 0.92)), Image.LANCZOS)
             photo = ImageTk.PhotoImage(img)
             self._photo_actuelle = photo
-            self.label_img.config(image=photo, text="")
+            self.label_img.config(image=photo, text="", bg=NOIR)
         except Exception:
             pass  # si l'image manque on garde l'ancienne
 
