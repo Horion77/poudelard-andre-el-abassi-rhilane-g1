@@ -20,7 +20,7 @@ finale de Quidditch.
 
 ## Comment lancer le jeu
 
-Deux façons de jouer, **avec exactement la même histoire** :
+Trois façons de jouer, **avec exactement la même histoire** :
 
 ### 1. Version terminal (version officielle, notée)
 
@@ -32,17 +32,24 @@ N'utilise que les bibliothèques autorisées (`random` et `json`). Les couleurs
 sont gérées par des codes ANSI (de simples chaînes de caractères, sans import).
 À lancer dans un terminal moderne (Windows Terminal, VS Code) pour un bon rendu.
 
-### 2. Version graphique — BONUS
+### 2. Version graphique classique — BONUS
 
 ```
 python jouer_gui.py
 ```
 
-Ouvre une fenêtre (zone de texte + champ de saisie). **Attention :** cette
-version utilise `tkinter`, qui n'est pas dans les bibliothèques autorisées par
-le sujet — c'est donc un bonus, pas la version notée. Le code du jeu n'est pas
-dupliqué : on remplace simplement `print` et `input` pour qu'ils parlent à la
-fenêtre au lieu du terminal.
+Ouvre une fenêtre avec une zone de texte scrollable et des boutons cliquables
+pour les choix. Utilise `tkinter` (hors bibliothèques autorisées) — bonus uniquement.
+
+### 3. Version graphique RPG — BONUS
+
+```
+python jouer_gui_rpg.py
+```
+
+Interface style jeu de rôle : grande image en haut qui change à chaque scène,
+boîte de dialogue en bas avec effet machine à écrire. Même principe technique
+que la version 2 — `print` et `input` redirigés vers la fenêtre.
 
 ## Structure du projet
 
