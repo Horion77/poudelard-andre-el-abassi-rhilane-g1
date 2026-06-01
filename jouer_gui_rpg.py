@@ -5,11 +5,15 @@
 # Lancer : python jouer_gui_rpg.py
 
 import sys
+import os
 import builtins
 import re
 import tkinter as tk
 from tkinter import font as tkfont
 from PIL import Image, ImageTk
+
+# Se placer dans le dossier du projet pour que open("data/...") fonctionne
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 from menu import lancer_choix_menu
 import utils.art
@@ -61,16 +65,16 @@ class AppRPG:
         interieur = tk.Frame(bordure, bg=GRIS_F)
         interieur.pack(fill="x")
 
-        # Zone de texte (2-3 lignes visibles, scroll si besoin)
-        police = tkfont.Font(family="Courier New", size=13)
+        # Zone de texte (3 lignes visibles, police grande et lisible)
+        police = tkfont.Font(family="Courier New", size=16)
         self.zone_texte = tk.Text(
             interieur, height=4, bg=GRIS_F, fg=BLANC,
             font=police, wrap="word", borderwidth=0,
-            padx=14, pady=10, state="disabled",
+            padx=16, pady=12, state="disabled",
             insertbackground=BLANC,
         )
         self.zone_texte.pack(fill="x")
-        self.zone_texte.tag_config("gras", font=tkfont.Font(family="Courier New", size=13, weight="bold"))
+        self.zone_texte.tag_config("gras", font=tkfont.Font(family="Courier New", size=16, weight="bold"))
         for code, couleur in CODE_VERS_COULEUR.items():
             self.zone_texte.tag_config(code, foreground=couleur)
 
@@ -235,7 +239,7 @@ class AppRPG:
             b = tk.Button(
                 self.cadre_boutons,
                 text="❯  " + texte,
-                font=("Courier New", 12), anchor="w",
+                font=("Courier New", 14), anchor="w",
                 bg=GRIS_F, fg=BLANC,
                 activebackground=OR, activeforeground=NOIR,
                 relief="flat", padx=12, pady=7,
@@ -253,7 +257,7 @@ class AppRPG:
         b = tk.Button(
             self.cadre_boutons,
             text="▼  Continuer",
-            font=("Courier New", 12, "bold"),
+            font=("Courier New", 14, "bold"),
             bg=NOIR, fg=OR,
             activebackground=OR, activeforeground=NOIR,
             relief="flat", padx=12, pady=7,

@@ -14,7 +14,6 @@ def pause():
 
 
 def transition_king_cross(joueur):
-    afficher_art("ch2_voie")
     print(titre("CHAPITRE 2 — La voie 9¾"))
     print()
     print("La fin de l'été a filé entre tes doigts. Et ce matin, c'est le grand jour.")
@@ -31,6 +30,7 @@ def transition_king_cross(joueur):
     print("\nUne famille de roux passe en trombe près de toi en parlant de 'Moldus'.")
     print("L'un après l'autre, ils foncent vers la barrière... et disparaissent dedans.")
 
+    afficher_art("ch2_voie")
     choix = demander_choix(
         "\nLe train part dans deux minutes. Comment traverses-tu ?",
         ["Je fonce sans réfléchir, à pleine vitesse", "J'avance doucement, la main tendue vers le mur"]
