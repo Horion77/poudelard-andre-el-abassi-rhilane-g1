@@ -68,7 +68,7 @@ class AppRPG:
         # Zone de texte (3 lignes visibles, police grande et lisible)
         police = tkfont.Font(family="Courier New", size=16)
         self.zone_texte = tk.Text(
-            interieur, height=4, bg=GRIS_F, fg=BLANC,
+            interieur, height=8, bg=GRIS_F, fg=BLANC,
             font=police, wrap="word", borderwidth=0,
             padx=16, pady=12, state="disabled",
             insertbackground=BLANC,
