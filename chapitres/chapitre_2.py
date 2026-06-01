@@ -3,6 +3,10 @@ from utils.input_utils import demander_choix, load_fichier
 from univers.personnage import afficher_personnage
 from univers.maison import repartition_maison
 from utils.couleurs import JAUNE, VERT, ROUGE, CYAN, GRIS, GRAS, RESET, COULEUR_MAISON, titre, colorer
+import utils.art as _art
+
+def afficher_art(nom):
+    _art.afficher_art(nom)
 
 
 def pause():
@@ -10,6 +14,7 @@ def pause():
 
 
 def transition_king_cross(joueur):
+    afficher_art("ch2_voie")
     print(titre("CHAPITRE 2 — La voie 9¾"))
     print()
     print("La fin de l'été a filé entre tes doigts. Et ce matin, c'est le grand jour.")
@@ -47,6 +52,7 @@ def transition_king_cross(joueur):
 
 
 def rencontrer_amis(joueur):
+    afficher_art("ch2_train")
     print("\nTu pousses la porte d'un compartiment. Un garçon à lunettes rondes,")
     print("une étrange cicatrice en éclair sur le front, lève les yeux vers toi.")
     print(colorer("— Salut. Moi c'est Harry. Assieds-toi, il reste de la place.", JAUNE))
@@ -92,6 +98,7 @@ def rencontrer_amis(joueur):
 
 
 def mot_de_bienvenue():
+    afficher_art("ch2_arrivee")
     print("\n" + titre("Arrivée à Poudlard"))
     print("\nDans la Grande Salle, sous un plafond magique étoilé, " + colorer("Dumbledore", CYAN) + " se lève.")
     print(colorer("« Bienvenue à tous à Poudlard !", CYAN))
@@ -127,6 +134,7 @@ def ceremonie_repartition(joueur):
     joueur["Maison"] = maison
 
     couleur = COULEUR_MAISON.get(maison, JAUNE)
+    afficher_art("ch2_choixpeau")
     print("\nLe Choixpeau s'exclame : " + colorer(maison + " !!!", couleur + GRAS))
     print("Tu rejoins la table de " + colorer(maison, couleur) + " sous les acclamations !")
     if maison == "Gryffondor":

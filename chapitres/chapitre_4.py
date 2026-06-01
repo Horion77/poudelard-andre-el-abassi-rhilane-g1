@@ -6,6 +6,10 @@ from univers.maison import actualiser_points_maison, afficher_maison_gagnante
 
 # couleurs ANSI : centralisees dans utils/couleurs.py (juste des strings)
 from utils.couleurs import JAUNE, CYAN, VERT, ROUGE, VIOLET, GRAS, RESET
+import utils.art as _art
+
+def afficher_art(nom):
+    _art.afficher_art(nom)
 
 
 # -------------------------------------------------------
@@ -97,6 +101,7 @@ def match_quidditch(joueur, maisons):
         afficher_score(e1, e2)
 
         if apparition_vifdor():
+            afficher_art("vif_or")
             print("\n" + JAUNE + "Le Vif d'Or scintille dans le ciel ! Tu fonces vers lui." + RESET)
             gagnant_vifdor = attraper_vifdor(e1, e2)
 
@@ -112,6 +117,7 @@ def match_quidditch(joueur, maisons):
         input("\nEntree pour continuer...")
 
     # resultats
+    afficher_art("maisons")
     print("\n" + GRAS + "== Resultat final ==" + RESET)
     afficher_score(e1, e2)
 
@@ -207,6 +213,7 @@ def vision_gryffondor(joueur):
     print("Des traces de sorts encore fumantes sur les pierres noires.")
     input("[Entree...]")
 
+    afficher_art("mangemort")
     print("\nDevant toi -- un Mangemort.")
     print("Grand, masque, baguette levee. Il n'est pas seul.")
     print("Tu entends d'autres pas quelque part dans le chateau.")
@@ -306,6 +313,7 @@ def vision_serpentard(joueur):
     print("\n" + VERT + GRAS + "~ VISION -- Serpentard ~" + RESET)
     input("[Entree...]")
 
+    afficher_art("ministere")
     print("\nTu te vois adulte, dans un bureau que tu ne reconnais pas.")
     print("Des robes du Ministere de la Magie. Des visages graves. Des voix feutrees.")
     print("Tu portes une identite qui n'est pas la tienne -- Polynectar.")
@@ -441,6 +449,7 @@ def vision_poufsouffle(joueur):
     input("[Entree...]")
 
     # les Grindylows
+    afficher_art("grindylow")
     print("\nL'eau est glacee. La lumiere disparait vite.")
     print("Tu vois la lueur retenant tes amis -- encore loin.")
     print("\nMais quelque chose te tire la cheville. Des Grindylows.")
@@ -510,6 +519,7 @@ def vision_serdaigle(joueur):
     print("\n" + VIOLET + GRAS + "~ VISION -- Serdaigle ~" + RESET)
     input("[Entree...]")
 
+    afficher_art("porte")
     print("\nTu te vois adulte. Le Departement des Mysteres du Ministere de la Magie.")
     print("Couloirs qui changent. Portes qui se deplacent toutes seules.")
     print("Personne d'autre n'est suppose etre ici a cette heure.")

@@ -1,6 +1,10 @@
 from utils.input_utils import demander_texte, demander_nombre, demander_choix, load_fichier
 from univers.personnage import initialiser_personnage, afficher_personnage, modifier_argent, ajouter_objet
 from utils.couleurs import JAUNE, VERT, ROUGE, CYAN, VIOLET, GRIS, GRAS, RESET, titre, colorer
+import utils.art as _art
+
+def afficher_art(nom):
+    _art.afficher_art(nom)
 
 
 def pause():
@@ -8,6 +12,7 @@ def pause():
 
 
 def introduction():
+    afficher_art("ch1_intro")
     print(titre("CHAPITRE 1 — La lettre qui change tout"))
     print()
     print("Toute ta vie, on t'a répété que tu étais un enfant " + colorer("normal", GRIS) + ".")
@@ -51,6 +56,7 @@ def creer_personnage():
 
 
 def recevoir_lettre():
+    afficher_art("ch1_lettre")
     print("\nUn battement d'ailes. " + colorer("Une chouette", JAUNE) + " traverse la fenêtre")
     print("et se pose devant toi, une lettre scellée de cire serrée dans son bec.")
     pause()
@@ -65,6 +71,7 @@ def recevoir_lettre():
     print("\nLe monde s'arrête une seconde. Sorcellerie. Poudlard.")
     print("Alors c'était donc ça, depuis le début.")
 
+    afficher_art("ch1_choix")
     options = ["Oui, bien sûr !", "Non, je préfère rester avec l'oncle Vernon..."]
     choix = demander_choix("Souhaitez-vous accepter cette invitation et partir pour Poudlard ?", options)
 
@@ -79,6 +86,7 @@ def recevoir_lettre():
 
 
 def rencontrer_hagrid(personnage):
+    afficher_art("ch1_hagrid")
     print("\nLe lendemain, une ombre immense bouche l'entrée. Un géant à la barbe broussailleuse,")
     print("le regard doux, se baisse pour passer la porte.")
     print(colorer("\nHagrid : « Salut " + personnage["Prenom"] + " ! Géant Hagrid, gardien des Clés de Poudlard.", CYAN))
@@ -96,6 +104,7 @@ def rencontrer_hagrid(personnage):
 
 
 def acheter_fournitures(personnage):
+    afficher_art("ch1_chemin")
     catalogue = load_fichier("data/inventaire.json")
     restants = ["Baguette magique", "Robe de sorcier", "Manuel de potions"]
     animaux = [["Chouette", 20], ["Chat", 15], ["Rat", 10], ["Crapaud", 5]]

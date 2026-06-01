@@ -1,35 +1,20 @@
-"""
-VERSION GRAPHIQUE (BONUS) — Poudlard.
-
-ATTENTION : ce fichier utilise tkinter, qui n'est PAS dans les bibliotheques
-autorisees par le sujet. Ce n'est donc PAS la version notee.
-La version officielle (terminal, uniquement random + json) reste main.py.
-
-Principe (a expliquer en soutenance en une phrase) :
-on remplace print et input pour qu'ils parlent a une fenetre au lieu du
-terminal. Le code du jeu (menu + chapitres) n'est PAS modifie : c'est
-exactement le meme jeu qui tourne dans les deux modes.
-
-Ce que cette version apporte par rapport au terminal :
-  - les choix numerotes (1. ... / 2. ...) deviennent de vrais BOUTONS
-    cliquables : on detecte les lignes "1. xxx" affichees juste avant un
-    input(), et on fabrique un bouton par option ;
-  - les pauses "(Entree pour continuer...)" deviennent un bouton "Continuer" ;
-  - sinon (ex : saisir son nom) on garde un champ de texte classique ;
-  - theme sombre facon parchemin de nuit + couleurs des maisons.
-
-Astuce technique : pas de threads. input() affiche les boutons/le champ
-puis appelle root.wait_variable(), qui attend le clic dans une boucle
-d'evenements imbriquee, puis renvoie la saisie.
-"""
+# VERSION GRAPHIQUE (BONUS) — Poudlard
+# Utilise tkinter (hors bibliotheques autorisees) — version notee = main.py
+#
+# Principe : on remplace sys.stdout et builtins.input pour que le jeu
+# s'affiche dans une fenetre sans modifier le code des chapitres.
+# Les choix numerotes deviennent des boutons, les pauses un bouton Continuer.
+# Pas de threads : on bloque avec root.wait_variable() en attendant le clic.
 
 import sys
 import builtins
 import re
 import tkinter as tk
 from tkinter import scrolledtext
+from PIL import Image, ImageTk
 
 from menu import lancer_choix_menu
+import utils.art
 
 
 # Code ANSI -> nom de tag de couleur dans la zone de texte.
@@ -65,10 +50,12 @@ class SortieFenetre:
 
     def __init__(self, widget):
         self.widget = widget
-        self.couleur = None
+        self.couleur = None         # couleur du texte (tag nomme)
+        self.fond = None            # couleur de fond = pixel art (tag "#rrggbb")
         self.gras = False
         self.ligne_courante = ""    # texte (sans ANSI) de la ligne en cours
         self.lignes = []            # historique des lignes terminees (sans ANSI)
+        self.tags_fond = {}         # cache : "#rrggbb" -> tag deja configure
 
     def write(self, texte):
         position = 0
@@ -83,14 +70,28 @@ class SortieFenetre:
             self._inserer(reste)
 
     def _appliquer_codes(self, codes):
-        for code in codes.split(";"):
+        parties = codes.split(";")
+        i = 0
+        while i < len(parties):
+            code = parties[i]
             if code == "" or code == "0":
                 self.couleur = None
+                self.fond = None
                 self.gras = False
             elif code == "1":
                 self.gras = True
+            elif code == "48" and i + 4 < len(parties) and parties[i + 1] == "2":
+                # Couleur de fond vraies couleurs : 48;2;R;G;B  (pixel art)
+                hex_couleur = "#%02x%02x%02x" % (
+                    int(parties[i + 2]), int(parties[i + 3]), int(parties[i + 4]))
+                if hex_couleur not in self.tags_fond:
+                    self.widget.tag_config(hex_couleur, background=hex_couleur)
+                    self.tags_fond[hex_couleur] = True
+                self.fond = hex_couleur
+                i = i + 4
             elif code in CODE_VERS_TAG:
                 self.couleur = CODE_VERS_TAG[code]
+            i = i + 1
 
     def _inserer(self, texte):
         # On met a jour notre memoire de lignes (texte brut, sans couleur).
@@ -107,6 +108,8 @@ class SortieFenetre:
         tags = []
         if self.couleur:
             tags.append(self.couleur)
+        if self.fond:
+            tags.append(self.fond)
         if self.gras:
             tags.append("gras")
         self.widget.config(state="normal")
@@ -302,6 +305,32 @@ def main():
     # On branche print et input sur la fenetre.
     sys.stdout = sortie
     builtins.input = entree_fenetre
+
+    # Remplace afficher_art() par une version qui affiche le vrai PNG dans la fenetre.
+    # Les images sont redimensionnees a 300px de large max pour bien s'integrer au texte.
+    images_gui = []   # garde les references pour eviter le garbage collector
+
+    def afficher_art_gui(nom):
+        chemin = "data/art/" + nom + ".png"
+        try:
+            img = Image.open(chemin)
+            # Redimensionner a 300px de large max en gardant les proportions
+            max_largeur = 300
+            ratio = img.height / img.width
+            img = img.resize((max_largeur, int(max_largeur * ratio)), Image.LANCZOS)
+            photo = ImageTk.PhotoImage(img)
+            images_gui.append(photo)   # garder la reference
+            zone.config(state="normal")
+            zone.insert(tk.END, "\n")
+            zone.image_create(tk.END, image=photo)
+            zone.insert(tk.END, "\n\n")
+            zone.see(tk.END)
+            zone.config(state="disabled")
+            zone.update_idletasks()
+        except Exception:
+            pass   # si l'image est absente ou invalide, on ignore
+
+    utils.art.afficher_art = afficher_art_gui
 
     def lancer_jeu():
         try:

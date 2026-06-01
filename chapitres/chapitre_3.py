@@ -3,9 +3,14 @@ import random
 from utils.input_utils import load_fichier
 from univers.personnage import afficher_personnage, ajouter_objet
 from univers.maison import actualiser_points_maison, afficher_maison_gagnante
+import utils.art as _art
+
+def afficher_art(nom):
+    _art.afficher_art(nom)
 
 
 def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
+    afficher_art("ch3_cours")
     tous_les_sorts = load_fichier(chemin_fichier)
     offensifs = []
     defensifs = []
@@ -44,6 +49,7 @@ def apprendre_sorts(joueur, chemin_fichier="data/sorts.json"):
 
 
 def quiz_magie(joueur, chemin_fichier="data/quiz_magie.json"):
+    afficher_art("ch3_quiz")
     # Le score du quiz est ajouté aux points de la maison du joueur dans lancer_chapitre_3.
     toutes_les_questions = load_fichier(chemin_fichier)
     questions_choisies = []
