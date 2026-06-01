@@ -268,17 +268,16 @@ class AppRPG:
         nb = len(options)
         for idx, texte in enumerate(options):
             n = idx + 1
-            b = tk.Button(
+            b = tk.Label(
                 self.cadre_boutons,
                 text="❯  " + texte,
                 font=("Courier New", 14), anchor="w",
                 bg=GRIS_F, fg=BLANC,
-                activebackground=OR, activeforeground=NOIR,
-                relief="flat", padx=12, pady=7,
+                padx=12, pady=7,
                 cursor="hand2", wraplength=860,
-                command=lambda n=n: self._repondre(str(n)),
             )
             b.pack(fill="x", pady=2)
+            b.bind("<Button-1>", lambda e, n=n: self._repondre(str(n)))
             b.bind("<Enter>", lambda e, b=b: b.config(bg="#222222", fg=OR))
             b.bind("<Leave>", lambda e, b=b: b.config(bg=GRIS_F, fg=BLANC))
             if n <= 9:
