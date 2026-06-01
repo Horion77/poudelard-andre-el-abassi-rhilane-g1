@@ -41,15 +41,15 @@ class AppRPG:
         self.root = root
         self.root.title("Poudlard")
         self.root.configure(bg=NOIR)
-        self.root.geometry("900x700")
-        self.root.minsize(700, 550)
+        self.root.geometry("1100x800")
+        self.root.minsize(800, 600)
 
-        # ── Zone image (haut, ~60% de la hauteur) ──────────────────────────
+        # ── Zone image (haut, prend tout l'espace disponible) ──────────────
         self.cadre_img = tk.Frame(root, bg=NOIR)
-        self.cadre_img.pack(fill="both", expand=True, padx=16, pady=(16, 8))
+        self.cadre_img.pack(fill="both", expand=True, padx=0, pady=0)
 
         self.label_img = tk.Label(self.cadre_img, bg=NOIR)
-        self.label_img.pack(expand=True)
+        self.label_img.place(relx=0.5, rely=0.5, anchor="center")
 
         self._photo_actuelle = None  # garde la reference pour eviter le GC
         self._charger_image_defaut()
@@ -103,9 +103,11 @@ class AppRPG:
         chemin = "data/art/" + nom + ".png"
         try:
             img = Image.open(chemin)
-            # Adapter a la taille du cadre (max 860 x 380)
-            max_l, max_h = 860, 380
-            img.thumbnail((max_l, max_h), Image.LANCZOS)
+            # Prend la taille reelle du cadre image pour s'adapter
+            self.root.update_idletasks()
+            larg = max(self.cadre_img.winfo_width(), 800)
+            haut = max(self.cadre_img.winfo_height(), 400)
+            img.thumbnail((larg, haut), Image.LANCZOS)
             photo = ImageTk.PhotoImage(img)
             self._photo_actuelle = photo
             self.label_img.config(image=photo, text="")
@@ -152,7 +154,10 @@ class AppRPG:
                 self.ligne_courante += c
         if len(self.lignes) > 60:
             self.lignes = self.lignes[-60:]
-        if not self._en_cours:
+        # Si trop de texte en attente (inventaire, stats...) on affiche d'un coup
+        if len(self._file_lettres) > 120:
+            self._attendre_fin_ecriture()
+        elif not self._en_cours:
             self._en_cours = True
             self._process_file()
 
