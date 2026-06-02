@@ -94,6 +94,123 @@ def match_quidditch(joueur, maisons):
     print(CYAN + "Dans les gradins, Hermione brandit une banderole et Ron hurle ton nom." + RESET)
     input("\nAppuyez sur Entree pour commencer...")
 
+    vifdor_apparu = False
+    for tour in range(1, 21):
+        print("\n--- Tour " + str(tour) + " ---")
+        tentative_marque(e1, e2, joueur_est_joueur=True)
+        tentative_marque(e2, e1)
+        afficher_score(e1, e2)
+
+        # Spawn aleatoire, ou force au tour 15 si pas encore apparu
+        if apparition_vifdor() or (tour >= 15 and not vifdor_apparu):
+            vifdor_apparu = True
+            afficher_art("vif_or")
+            print("\n" + JAUNE + "Le Vif d'Or scintille dans le ciel ! Tu fonces vers lui." + RESET)
+            gagnant_vifdor = attraper_vifdor(e1, e2)
+
+            if gagnant_vifdor["nom"] == maison_joueur:
+                scene_chute_et_vision(joueur)
+            else:
+                print("L'Attrapeur de " + maison_adverse + " te coupe la route et l'attrape !")
+                print("Fin du match.")
+            break
+
+        input("\nEntree pour continuer...")
+import random
+from utils.input_utils import demander_choix, load_fichier
+from univers.personnage import afficher_personnage
+from univers.maison import actualiser_points_maison, afficher_maison_gagnante
+
+# couleurs ANSI : centralisees dans utils/couleurs.py (juste des strings)
+from utils.couleurs import JAUNE, CYAN, VERT, ROUGE, VIOLET, GRAS, RESET
+import utils.art as _art
+
+def afficher_art(nom):
+    _art.afficher_art(nom)
+
+
+# -------------------------------------------------------
+# PARTIE A - match de quidditch
+# -------------------------------------------------------
+
+def creer_equipe(maison, equipe_data, est_joueur=False, joueur=None):
+    equipe = {
+        "nom": maison, "score": 0,
+        "a_marque": 0, "a_stoppe": 0,
+        "attrape_vifdor": False,
+        "joueurs": equipe_data["joueurs"]
+    }
+    if est_joueur and joueur is not None:
+        # le joueur prend la place de l'attrapeur (toujours en tete)
+        nom_joueur = joueur["Prenom"] + " " + joueur["Nom"] + "(Attrapeur)"
+        nouvelle_liste = [nom_joueur]
+        for j in equipe_data["joueurs"]:
+            if "(Attrapeur)" not in j:
+                nouvelle_liste.append(j)
+        equipe["joueurs"] = nouvelle_liste
+    return equipe
+
+
+def tentative_marque(equipe_attaque, equipe_defense, joueur_est_joueur=False):
+    # >= 6 sur 1-10 = but
+    jet = random.randint(1, 10)
+    if jet >= 6:
+        if joueur_est_joueur:
+            buteur = equipe_attaque["joueurs"][0]
+        else:
+            buteur = random.choice(equipe_attaque["joueurs"])
+        equipe_attaque["score"] = equipe_attaque["score"] + 10
+        equipe_attaque["a_marque"] = equipe_attaque["a_marque"] + 1
+        print(VERT + buteur + " marque ! (+10)" + RESET)
+    else:
+        equipe_defense["a_stoppe"] = equipe_defense["a_stoppe"] + 1
+        print(equipe_defense["nom"] + " bloque l'attaque.")
+
+
+def apparition_vifdor():
+    return random.randint(1, 6) == 6
+
+
+def attraper_vifdor(e1, e2):
+    # tirage entre les deux equipes - le resultat est revele dans match_quidditch
+    gagnant = random.choice([e1, e2])
+    gagnant["score"] = gagnant["score"] + 150
+    gagnant["attrape_vifdor"] = True
+    return gagnant
+
+
+def afficher_score(e1, e2):
+    print("\nScore :")
+    print("  " + e1["nom"] + " : " + str(e1["score"]) + " pts")
+    print("  " + e2["nom"] + " : " + str(e2["score"]) + " pts")
+
+
+def afficher_equipe(maison, equipe):
+    print("\nEquipe de " + maison + " :")
+    for j in equipe["joueurs"]:
+        print("  - " + j)
+
+
+def match_quidditch(joueur, maisons):
+    equipes_data = load_fichier("data/equipes_quidditch.json")
+    maison_joueur = joueur["Maison"]
+
+    adversaires = []
+    for m in equipes_data:
+        if m != maison_joueur:
+            adversaires.append(m)
+    maison_adverse = random.choice(adversaires)
+
+    e1 = creer_equipe(maison_joueur, equipes_data[maison_joueur], est_joueur=True, joueur=joueur)
+    e2 = creer_equipe(maison_adverse, equipes_data[maison_adverse])
+
+    print("\n" + GRAS + JAUNE + "== Match de Quidditch : " + maison_joueur + " vs " + maison_adverse + " ==" + RESET)
+    afficher_equipe(maison_joueur, e1)
+    afficher_equipe(maison_adverse, e2)
+    print("\nTu joues pour " + maison_joueur + " en tant qu'Attrapeur.")
+    print(CYAN + "Dans les gradins, Hermione brandit une banderole et Ron hurle ton nom." + RESET)
+    input("\nAppuyez sur Entree pour commencer...")
+
     for tour in range(1, 21):
         print("\n--- Tour " + str(tour) + " ---")
         tentative_marque(e1, e2, joueur_est_joueur=True)
